@@ -47,6 +47,7 @@
       "point-of-view": "^3.8.0",
       "pug": "^2.0.4",
       "reflect-metadata": "^0.1.13",
+      "rollbar": "^2.16.1",
       "sql.js": "^1.2.2",
       "sqlite3": "^4.2.0",
       "typeorm": "0.2.24",
