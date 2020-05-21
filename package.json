@@ -40,6 +40,7 @@
       "fastify-session": "^4.0.0",
       "fastify-static": "^2.7.0",
       "fastify-typeorm": "^2.1.2",
+      "gulp": "^4.0.2",
       "http-errors": "^1.7.3",
       "i18next": "^19.4.4",
       "i18next-node-fs-backend": "^2.1.3",

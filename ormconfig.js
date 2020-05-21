@@ -1,4 +1,5 @@
 export default {
+  name: 'default',
   type: 'sqlite',
   database: `${__dirname}/database.sqlite`,
   synchronize: true,
