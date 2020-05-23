@@ -21,3 +21,9 @@ lint:
 
 test:
 	npm run test
+
+compile-migration:
+	npx tsc server/migration/*.ts --outDir dist/server/migration
+
+run-migration:
+	npm run babel-typeorm migration:run

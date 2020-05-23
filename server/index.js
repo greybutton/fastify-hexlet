@@ -18,8 +18,7 @@ import Rollbar from 'rollbar';
 import ru from './locales/ru.js';
 import webpackConfig from '../webpack.config.js';
 
-import ormconfigDefault from '../ormconfig.js';
-import ormconfigProd from '../ormconfig.prod.js';
+import ormconfig from '../ormconfig.js';
 import addRoutes from './routes/index.js';
 import getHelpers from './helpers/index.js';
 import User from './entity/User.js';
@@ -111,8 +110,6 @@ const registerPlugins = (app) => {
   app.register(fastifyFlash);
   // app.register(auth);
   app.register(fastifyMethodOverride);
-
-  const ormconfig = isProduction ? ormconfigProd : ormconfigDefault;
   app.register(fastifyTypeORM, ormconfig)
     .after((err) => {
       if (err) throw err;

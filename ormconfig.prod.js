@@ -6,17 +6,12 @@ export default {
   logger: 'debug',
   logging: true,
   entities: [
-    `${__dirname}/server/entity/**/*.js`,
+    `${__dirname}/dist/server/entity/**/*.js`,
   ],
   migrations: [
-    'server/migration/*.js',
+    'dist/server/migration/*.js',
   ],
   subscribers: [
-    'server/subscriber/*.js',
+    'dist/server/subscriber/*.js',
   ],
-  cli: {
-    entitiesDir: 'server/entity',
-    migrationsDir: 'server/migration',
-    subscribersDir: 'server/subscriber',
-  },
 };
