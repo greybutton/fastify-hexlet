@@ -1,5 +1,5 @@
 import {
-  Entity, PrimaryGeneratedColumn, Column, BaseEntity,
+  Entity, PrimaryGeneratedColumn, Column, BaseEntity, Index, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
 import { IsNotEmpty, IsEmail } from 'class-validator';
 
@@ -8,6 +8,7 @@ class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id = null;
 
+  @Index({ unique: true })
   @Column('varchar')
   @IsEmail()
   @IsNotEmpty()
@@ -19,6 +20,20 @@ class User extends BaseEntity {
   @Column('varchar')
   @IsNotEmpty()
   passwordDigest = '';
+
+  @Column('varchar')
+  @IsNotEmpty()
+  firstName;
+
+  @Column('varchar')
+  @IsNotEmpty()
+  lastName;
+
+  @CreateDateColumn({ default: () => 'CURRENT_TIMESTAMP' })
+  createdAt;
+
+  @UpdateDateColumn({ default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt;
 }
 
 export default User;

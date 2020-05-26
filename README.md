@@ -18,3 +18,11 @@ $ make setup
 $ make start
 # Open localhost:5000
 ```
+
+## TypeORM commands
+
+```sh
+$ npm run babel-typeorm -- migration:generate
+$ make compile-migration
+$ make run-migration
+```
