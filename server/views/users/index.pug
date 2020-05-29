@@ -4,12 +4,23 @@ block content
   table.table.table-striped
     thead
       tr
-        th= t('users.id')
-        th= t('users.email')
-        th= t('users.createdAt')
+        th= t('views.users.index.id')
+        th= t('views.users.index.email')
+        th= t('views.users.index.fullName')
+        th= t('views.users.index.createdAt')
+        th= t('views.users.index.updatedAt')
+        th= t('views.users.index.actions')
     tbody
       each user in users
         tr
           td= user.id
           td= user.email
-          td= user.createdAt
+          td
+            a(href= route('showUser', { id: user.id }))= user.fullName
+          td= formatDate(user.createdAt)
+          td= formatDate(user.updatedAt)
+          td
+            a.btn.btn-link(href= route('editUser', { id: user.id }))= t('views.users.index.edit')
+            form.form-inline.d-inline-block(action= route('deleteUser', {id: user.id }) method='post' data-confirm="Are you sure?")
+              input(name='_method' type='hidden' value='delete')
+              button.btn.btn-link(type='submit')= t('views.users.index.delete')

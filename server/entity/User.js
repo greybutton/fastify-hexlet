@@ -34,6 +34,10 @@ class User extends BaseEntity {
 
   @UpdateDateColumn({ default: () => 'CURRENT_TIMESTAMP' })
   updatedAt;
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
 }
 
 export default User;

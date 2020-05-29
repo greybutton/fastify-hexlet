@@ -28,10 +28,52 @@ export default (app) => {
       const errors = await validate(user);
       if (!_.isEmpty(errors)) {
         req.flash('error', i18next.t('flash.users.create.error'));
-        return reply.render('users/new', { user, errors });
+        reply.render('users/new', { user, errors });
+        return reply;
       }
       await user.save();
       req.flash('info', i18next.t('flash.users.create.success'));
-      return reply.redirect(app.reverse('root'));
+      reply.redirect(app.reverse('root'));
+      return reply;
+    })
+    .get('/users/:id', { name: 'showUser' }, async (req, reply) => {
+      const { id } = req.params;
+      const user = await User.findOne(id);
+      reply.render('users/show', { user });
+      return reply;
+    })
+    .get('/users/:id/edit', { name: 'editUser' }, async (req, reply) => {
+      const { id } = req.params;
+      const user = await User.findOne(id);
+      reply.render('users/edit', { user });
+      return reply;
+    })
+    .patch('/users/:id', { name: 'updateUser' }, async (req, reply) => {
+      const { id } = req.params; // { '*': 'users/1' }
+      const { user } = req.body;
+
+      try {
+        await User.update(user, id);
+        req.flash('info', i18next.t('flash.users.update.success'));
+        reply.redirect(app.reverse('users'));
+        return reply;
+      } catch (e) {
+        reply.render('users/edit', { user });
+        return reply;
+      }
+    })
+    .delete('/users/:id', { name: 'deleteUser' }, async (req, reply) => {
+      const { id } = req.params;
+      const user = await User.findOne(id);
+
+      try {
+        await user.remove();
+        req.flash('info', i18next.t('flash.users.delete.success'));
+        reply.redirect(app.reverse('users'));
+        return reply;
+      } catch (e) {
+        req.flash('error', i18next.t('flash.users.delete.success'));
+        return reply;
+      }
     });
 };

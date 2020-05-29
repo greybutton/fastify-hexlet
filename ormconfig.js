@@ -21,6 +21,29 @@ const dev = {
   },
 };
 
+const test = {
+  name: 'test',
+  type: 'sqlite',
+  database: `${__dirname}/database.test.sqlite`,
+  synchronize: false,
+  logger: 'debug',
+  logging: true,
+  entities: [
+    `${__dirname}/server/entity/**/*.js`,
+  ],
+  migrations: [
+    'dist/server/migration/*.js',
+  ],
+  subscribers: [
+    'server/subscriber/*.js',
+  ],
+  cli: {
+    entitiesDir: 'server/entity',
+    migrationsDir: 'server/migration',
+    subscribersDir: 'server/subscriber',
+  },
+};
+
 const production = {
   name: 'production',
   type: 'postgres',
@@ -44,7 +67,7 @@ const production = {
 
 const configs = {
   default: dev,
-  test: dev,
+  test,
   production,
 };
 

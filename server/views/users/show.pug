@@ -1,0 +1,11 @@
+extends ../layouts/application.pug
+
+block content
+  div
+    div= user.id
+    div= user.email
+    div= user.fullName
+    div= formatDate(user.createdAt)
+    div= formatDate(user.updatedAt)
+    div
+      a.btn.btn-link(href= route('editUser', { id: user.id }))= t('views.users.show.edit')

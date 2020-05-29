@@ -34,6 +34,16 @@ module.exports = {
         },
       },
       users: {
+        index: {
+          id: '# ID',
+          email: 'Email',
+          fullName: 'Полное имя',
+          createdAt: 'Создан',
+          updatedAt: 'Обновлен',
+          actions: 'Действия',
+          edit: 'Редактировать',
+          delete: 'Удалить',
+        },
         new: {
           submit: 'Сохранить',
           signUp: 'Регистрация',
